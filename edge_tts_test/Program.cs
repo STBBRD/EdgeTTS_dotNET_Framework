@@ -9,7 +9,7 @@ string msg = string.Empty;
 Console.WriteLine("请输入文本内容.");
 msg = Console.ReadLine();
 // 获取xiaoxiao语音包
-var voice = Edge_tts.GetVoice().FirstOrDefault(i=> i.Name == "Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoxiaoNeural)");
+var voice = Edge_tts.GetVoice()[55];
 // 文字转语音，并且设置语速
 Edge_tts.PlayText(msg, voice);
 
