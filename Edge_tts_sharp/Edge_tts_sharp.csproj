@@ -10,16 +10,19 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <!--添加该配置才会生成注释文件，默认无注释-->
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	  <Title>Edge_tts_sharp</Title>
-	  <Authors>Entity-now</Authors>
-	  <Description>免费调用微软Edge浏览器文本转语音接口
+	  <Title>EdgeTTS_dotNET_Framework</Title>
+	  <Authors>ZongziTEK</Authors>
+	  <Description>Entity-Now/Edge_tts_sharp 的 .NET Framework 版本
+
+所有功能由 Entity-Now 开发，ZongziTEK 将目标框架更改为 .NET Framework 并解决在 .NET Framework 项目中的冲突问题
 </Description>
-	  <PackageProjectUrl>https://github.com/Entity-Now/Edge_tts_sharp</PackageProjectUrl>
+	  <PackageProjectUrl>https://github.com/STBBRD/EdgeTTS_dotNET_Framework</PackageProjectUrl>
 	  <RepositoryUrl>https://github.com/Entity-Now/Edge_tts_sharp</RepositoryUrl>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
 	  <PackageIcon>MenuLogo.png</PackageIcon>
 	  <RepositoryType>git</RepositoryType>
 	  <UserSecretsId>099b9a5e-4ebd-4672-8871-9986815c01f8</UserSecretsId>
+	  <Copyright>所有功能由 Entity-Now 开发，ZongziTEK 将目标框架更改为 .NET Framework 并解决在 .NET Framework 项目中的冲突问题</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
