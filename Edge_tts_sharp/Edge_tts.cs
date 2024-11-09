@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using WebSocketSharp;
 using Edge_tts_sharp.Utils;
 using System.Threading;
+using System.Security.Cryptography;
 
 
 namespace Edge_tts_sharp
@@ -26,9 +27,33 @@ namespace Edge_tts_sharp
         /// 同步模式
         /// </summary>
         public static bool Await = false;
+
+        private static string GenerateSecMsGecToken()
+        {
+            // 来自 https://github.com/rany2/edge-tts/issues/290#issuecomment-2464956570
+            var ticks = DateTime.Now.ToFileTimeUtc();
+            ticks -= ticks % 3_000_000_000;
+            var str = ticks + "6A5AA1D4EAFF4E9FB37E23D68491D6F4";
+            return ToHexString(HashData(Encoding.ASCII.GetBytes(str)));
+        }
+
+        private static string ToHexString(byte[] byteArray)
+        {
+            return BitConverter.ToString(byteArray).Replace("-", "").ToUpper();
+        }
+
+        private static byte[] HashData(byte[] data)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashBytes = sha256.ComputeHash(data);
+                return hashBytes;
+            }
+        }
+
         static string GetGUID()
         {
-            return Guid.NewGuid().ToString().Replace("-","");
+            return Guid.NewGuid().ToString().Replace("-", "");
         }
         /// <summary>
         /// 讲一个浮点型数值转换为百分比数值
@@ -65,7 +90,7 @@ namespace Edge_tts_sharp
         {
             return $"<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis'  xml:lang='{lang}'><voice name='{voice}'><prosody pitch='+0Hz' rate ='{FromatPercentage(rate)}' volume='{volume}'>{text}</prosody></voice></speak>";
         }
-        static string ConvertToSsmlWebSocketString(string requestId, string lang, string voice,int rate, int volume, string msg)
+        static string ConvertToSsmlWebSocketString(string requestId, string lang, string voice, int rate, int volume, string msg)
         {
             return $"X-RequestId:{requestId}\r\nContent-Type:application/ssml+xml\r\nPath:ssml\r\n\r\n{ConvertToSsmlText(lang, voice, rate, volume, msg)}";
         }
@@ -81,7 +106,7 @@ namespace Edge_tts_sharp
             var binary = new List<byte>();
             bool IsTurnEnd = false;
 
-            var wss = new Wss("wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4");
+            var wss = new Wss($"wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC={GenerateSecMsGecToken()}&Sec-MS-GEC-Version=1-130.0.2849.68");
             wss.OnMessage += (sender, e) =>
             {
                 if (e.IsText)
@@ -145,7 +170,7 @@ namespace Edge_tts_sharp
             };
             wss.OnLog += (onmsg) =>
             {
-                if(Debug) Console.WriteLine($"[{onmsg.level.ToString()}] {onmsg.msg}");
+                if (Debug) Console.WriteLine($"[{onmsg.level.ToString()}] {onmsg.msg}");
             };
             if (wss.Run())
             {
@@ -195,7 +220,7 @@ namespace Edge_tts_sharp
             {
                 player = new AudioPlayer(_binary.ToArray(), option.Volume);
             });
-            while (player == null) 
+            while (player == null)
             {
                 Thread.Sleep(10);
             }
@@ -218,7 +243,7 @@ namespace Edge_tts_sharp
 
         //    audioStreamer.Stop();
         //}
-        
+
         /// <summary>
         /// 获取支持的音频列表
         /// </summary>

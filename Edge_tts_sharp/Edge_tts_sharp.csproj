@@ -23,6 +23,7 @@
 	  <RepositoryType>git</RepositoryType>
 	  <UserSecretsId>099b9a5e-4ebd-4672-8871-9986815c01f8</UserSecretsId>
 	  <Copyright>所有功能由 Entity-Now 开发，ZongziTEK 将目标框架更改为 .NET Framework 并解决在 .NET Framework 项目中的冲突问题</Copyright>
+	  <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,7 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="NAudio" Version="2.2.1" />
-    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="System.Text.Json" Version="8.0.0" />
     <PackageReference Include="WebSocketSharp" Version="1.0.3-rc11" />
   </ItemGroup>
 
