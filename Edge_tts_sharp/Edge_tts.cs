@@ -250,7 +250,7 @@ namespace Edge_tts_sharp
         /// <returns></returns>
         public static List<eVoice> GetVoice()
         {
-            var voiceList = Tools.GetEmbedText("Edge_tts_sharp.Source.VoiceList.json");
+            var voiceList = Tools.GetEmbedText(Assembly.GetExecutingAssembly().GetName().Name + ".Source.VoiceList.json");
             return Tools.StringToJson<List<eVoice>>(voiceList);
         }
     }

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using System.Text.Json;
 
 namespace Edge_tts_sharp
 {
@@ -11,7 +11,7 @@ namespace Edge_tts_sharp
     {
         public static T StringToJson<T>(string json)
         {
-            return JsonSerializer.Deserialize<T>(json);
+            return JsonConvert.DeserializeObject<T>(json);
         }
         /// <summary>
         /// 获取嵌入文本资源,程序集.目录名.文件名（而不是\）

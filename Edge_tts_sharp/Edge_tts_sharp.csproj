@@ -1,60 +1,60 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
 
-	  <!--以下是我们自己添加的-->
-	  <!--版本号，重要性不必多说-->
-	  <Version>1.1.2</Version>
-	  <!--添加该配置，在编译时进行打包-->
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <!--添加该配置才会生成注释文件，默认无注释-->
-	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	  <Title>EdgeTTS_dotNET_Framework</Title>
-	  <Authors>ZongziTEK</Authors>
-	  <Description>Entity-Now/Edge_tts_sharp 的 .NET Framework 版本
+		<!--以下是我们自己添加的-->
+		<!--版本号，重要性不必多说-->
+		<Version>1.1.2</Version>
+		<!--添加该配置，在编译时进行打包-->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<!--添加该配置才会生成注释文件，默认无注释-->
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Title>EdgeTTS_dotNET_Framework</Title>
+		<Authors>ZongziTEK</Authors>
+		<Description>
+			Entity-Now/Edge_tts_sharp 的 .NET Framework 版本
 
-所有功能由 Entity-Now 开发，ZongziTEK 将目标框架更改为 .NET Framework 并解决在 .NET Framework 项目中的冲突问题
-</Description>
-	  <PackageProjectUrl>https://github.com/STBBRD/EdgeTTS_dotNET_Framework</PackageProjectUrl>
-	  <RepositoryUrl>https://github.com/Entity-Now/Edge_tts_sharp</RepositoryUrl>
-	  <PackageReadmeFile>README.md</PackageReadmeFile>
-	  <PackageIcon>MenuLogo.png</PackageIcon>
-	  <RepositoryType>git</RepositoryType>
-	  <UserSecretsId>099b9a5e-4ebd-4672-8871-9986815c01f8</UserSecretsId>
-	  <Copyright>所有功能由 Entity-Now 开发，ZongziTEK 将目标框架更改为 .NET Framework 并解决在 .NET Framework 项目中的冲突问题</Copyright>
-	  <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
-  </PropertyGroup>
+			所有功能由 Entity-Now 开发，ZongziTEK 将目标框架更改为 .NET Framework 并解决在 .NET Framework 项目中的冲突问题
+		</Description>
+		<PackageProjectUrl>https://github.com/STBBRD/EdgeTTS_dotNET_Framework</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Entity-Now/Edge_tts_sharp</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>MenuLogo.png</PackageIcon>
+		<RepositoryType>git</RepositoryType>
+		<UserSecretsId>099b9a5e-4ebd-4672-8871-9986815c01f8</UserSecretsId>
+		<Copyright>所有功能由 Entity-Now 开发，ZongziTEK 将目标框架更改为 .NET Framework 并解决在 .NET Framework 项目中的冲突问题</Copyright>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Source\VoiceList.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Source\VoiceList.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NAudio" Version="2.2.1" />
-    <PackageReference Include="System.Text.Json" Version="8.0.0" />
-    <PackageReference Include="WebSocketSharp" Version="1.0.3-rc11" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NAudio" Version="2.2.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="WebSocketSharp" Version="1.0.3-rc11" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Source\VoiceList.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Source\VoiceList.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\MenuLogo.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\MenuLogo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
 
 </Project>
